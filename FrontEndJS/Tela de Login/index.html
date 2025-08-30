@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link
+    href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'> 
+    
+</head>
+<body>
+    <div id="Principal">
+        <form>
+            <h1 class="TituloPrincipal">Login</h1>
+            <div class="input-usuario">         
+                <input id="input-usuario" placeholder="Usuário" type="email">
+                <i class="bx bxs-user"></i>            
+            </div>
+            <div class="input-usuario">
+                <input id="input-senha" placeholder="Senha" type="password">
+                <i class="bx bxs-lock-alt"></i> 
+            </div>
+
+            <div class="Redefinir-senha">
+                <label>
+                <input type="checkbox">
+                    Lembrar senha
+                </label>
+                <a href="#">Esqueci a senha</a>
+            </div>
+
+            <input id="login" type="button" value="Login" onclick="fazerlogin()">
+
+            <div class="Registrar-conta">
+                <p>Não tem uma conta? <a href="Register/index.html">Cadastre-se</a> </p> 
+            </div>
+        </form>
+    </div>
+
+    <div id="Alerta" class="alertinha">
+        <div class="alerta-conteudo">
+            <span class="fechar" onclick="fecharAlerta()">&times;</span>
+            <p id="mensagemAlerta"></p>
+
+</body>
+
+<script src="script.js"></script>
+</html>

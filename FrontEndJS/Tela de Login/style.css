@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box ;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('./fundo-login.png');
+    background-size: cover;
+    background-position: center;
+
+}
+
+#Principal {
+    width: 420px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 10px;
+    color: #fff ;
+    padding: 30px 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    backdrop-filter: blur(50px);
+}
+ 
+
+.TituloPrincipal{
+    font-size: 36px;
+    text-align: center;
+
+}
+
+.input-usuario {
+   position: relative;
+   width: 100%;
+   height: 50px;
+   margin: 30px 0;
+}
+
+.input-usuario input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    outline: none;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-usuario input::placeholder{
+    color: #cfcfcf;
+}
+
+.input-usuario i{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.Redefinir-senha {
+    display: flex;
+    justify-content: space-between;
+    margin: -15px 0 15px;
+
+}
+
+.Redefinir-senha label input {
+    accent-color: #fff;
+    margin-right: 5px;
+}
+
+.Redefinir-senha a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.Redefinir-senha a:hover {
+    text-decoration: underline;
+}
+
+#login {
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    margin-top: 20px;
+}
+
+#login:hover {
+    background-color: transparent;  
+    border: 2px solid rgba(255, 255, 255, .2);
+    color: #fff;
+    transition: 0.5s;
+}
+
+.Registrar-conta {
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.Registrar-conta a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+
+.Registrar-conta a:hover {
+    text-decoration: underline;
+}
+
+.alertinha {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 150px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.alerta-conteudo {
+    background-color: transparent;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid rgba(255, 255, 255, .2);
+    width: 60%;
+    max-width: 500px;
+    font-family: "Poppins", sans-serif;
+    color: #fff ;
+    font-size: 18px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.fechar {
+    color: purple;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.fechar:hover {
+    color: rgba(255, 255, 255, .2);
+}
