@@ -5,49 +5,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>HorseAura</title>
+    <title>AmendoChat - Horse Aura</title>
 </head>
 
 <body>
+    <div class="pagina-principal">
+        
+        <!-- CABEÇALHO COM NAVEGAÇÃO -->
+        <div class="cabecalho">
+            <div class="cabecalho-conteudo">
+                <!-- Logo do site -->
+                <div class="logo-container">
+                    <img src="LOGO-AmendoChat.png" alt="Horse Aura Logo" class="logo-imagem">
+                </div>
+                
+                <!-- Menu de navegação principal -->
+                <nav class="navegacao-principal">
+                    <a href="#inicio" class="link-navegacao">Início</a>
+                    <a href="#mapa" class="link-navegacao">Mapa</a>
+                    <a href="#relatorios" class="link-navegacao">Relatórios</a>
+                    <a href="#sobre" class="link-navegacao">Sobre</a>
+                    <a href="#contato" class="link-navegacao">Contato</a>
+                </nav>
+                
+                <!-- Botão de login -->
+                <div class="area-login">
+                    <a href="#login" class="botao-login">Login</a>
+                </div>
+            </div>
+        </div>
 
-    <!-- CONTAINER DO CABEÇALHO -->
-    <div class="container-header">
-        <div class="header-logo">
-            <img src="LOGO HORSE AURA 1.png" alt="Horse Aura Logo">
+        <!-- SEÇÃO PRINCIPAL COM BANNER -->
+        <div class="secao-banner">
+            <!-- Imagem de fundo -->
+            <div class="banner-fundo"></div>
+            
+            <!-- Overlay escuro sobre a imagem -->
+            <div class="banner-overlay"></div>
+            
+            <!-- Setas de navegação do carrossel -->
+            <button class="seta-carrossel seta-esquerda" aria-label="Slide anterior">‹</button>
+            <button class="seta-carrossel seta-direita" aria-label="Próximo slide">›</button>
+            
+            <!-- Conteúdo principal do banner -->
+            <div class="banner-conteudo">
+                <!-- Card com informações -->
+                <div class="card-informacoes">
+                    <!-- Título da marca -->
+                    <h2 class="titulo-marca">AmendoChat</h2>
+                    
+                    <!-- Título principal -->
+                    <h1 class="titulo-principal">
+                        A <span class="destaque-verde">inteligência artificial</span> que conecta você ao futuro do agro
+                    </h1>
+                    
+                    <!-- Subtítulo descritivo -->
+                    <p class="subtitulo-descricao">
+                        Respostas em tempo real e informações para melhorar os resultados no campo.
+                    </p>
+                    
+                    <!-- Botão de ação principal -->
+                    <a href="#planos" class="botao-ver-planos">VER PLANOS</a>
+                </div>
+            </div>
         </div>
-        <div class="header-nav">
-            <a href="#" class="header-link">Início</a>
-            <a href="#" class="header-link">Mapa</a>
-            <a href="#" class="header-link">Relatórios</a>
-            <a href="#" class="header-link">Sobre</a>
-            <a href="#" class="header-link">Contato</a>
-        </div>
+        
     </div>
-
-    <!-- CONTAINER DA SEÇÃO DE DESTAQUE -->
-    <div class="container-destaque">
-        <div class="fundo-destaque"></div>
-        <div class="sobreposicao-destaque"></div>
-
-        <button class="seta-destaque seta-esquerda" aria-label="anterior">‹</button>
-
-        <div class="conteudo-destaque">
-            <span class="titulo-pequeno">Horse Aura</span>
-            <h1 class="titulo-principal">
-                Conheça o potencial<br />
-                da sua terra<br />
-                em segundos
-            </h1>
-            <p class="subtitulo">
-                Relatórios sobre solo, cultivo e<br />
-                clima com apenas um clique
-            </p>
-            <a href="#explorar" class="botao-explorar">Explorar</a>
-        </div>
-
-        <button class="seta-destaque seta-direita" aria-label="próximo">›</button>
-    </div>
-
 </body>
 
 </html>
