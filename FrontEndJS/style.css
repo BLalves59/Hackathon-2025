@@ -331,16 +331,14 @@
 
 
 
- /* SEGUNDA SEÇÃO - SOBRE O AMENDOCHAT */
+/* ======= SEGUNDA SEÇÃO - SOBRE O AMENDOCHAT ======= */
 
- /* Container principal da seção sobre */
 .secao-sobre {
   background-color: #f8f9fa;
   padding: 80px 0;
   width: 100%;
 }
 
-/* Container geral da seção sobre */
 .sobre-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -350,65 +348,68 @@
   gap: 60px;
 }
 
-/* Container da imagem à esquerda */
+/* ------ Imagem ------ */
 .sobre-imagem {
   flex: 1;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Container da imagem das amendoas */
 .imagem-principal {
-  position: relative;
-  width: 400px;
-  height: 400px;
+  /* aumenta o tamanho e deixa responsivo */
+  width: clamp(280px, 35vw, 520px);
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+
+  /* tira o fundo branco e a sombra que criavam o “disco” */
+  background: transparent;
+  box-shadow: none;
+
+  /* opcional: aro colorido bonito */
+  outline: 6px solid #0a8a78;
+  outline-offset: 0;
+  position: relative;
 }
 
-/* Foto principal - ajustada para encaixar no círculo */
 .imagem-principal-foto {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
-  object-position: center center;
+  object-position: center;
   border-radius: 50%;
 }
 
 /* Ícone sobreposto */
 .icone-sobreposto {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 60px;
-  height: 60px;
+  top: 14px;
+  right: 14px;
+  width: 64px;
+  height: 64px;
   background-color: #0a8a78;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  z-index: 5;
+  z-index: 1;
 }
 
-/* Imagem do ícone */
 .icone-sobreposto-img {
-  width: 35px;
-  height: 35px;
+  width: 36px;
+  height: 36px;
   filter: brightness(0) invert(1);
 }
 
-/* Container do conteúdo à direita */
+/* ------ Conteúdo ------ */
 .sobre-conteudo {
   flex: 1;
   padding-left: 40px;
 }
 
-/* Título principal da seção sobre */
 .sobre-titulo {
   font-size: 42px;
   color: #0a8a78;
@@ -417,27 +418,22 @@
   line-height: 1.1;
 }
 
-/* Texto descritivo comum */
 .sobre-texto {
   font-size: 18px;
-  color: #555555;
+  color: #555;
   line-height: 1.6;
   margin-bottom: 25px;
 }
 
-/* Texto com destaque em negrito */
 .sobre-texto-destaque {
   font-size: 18px;
-  color: #333333;
+  color: #333;
   line-height: 1.6;
   margin-bottom: 35px;
 }
 
+/* ======= FUNCIONALIDADES ======= */
 
-
-/* ==================== SEÇÃO DAS FUNCIONALIDADES ==================== */
-
-/* Container das funcionalidades */
 .funcionalidades-container {
   max-width: 1000px;
   margin: 80px auto 0;
@@ -445,7 +441,6 @@
   text-align: center;
 }
 
-/* Título das funcionalidades */
 .funcionalidades-titulo {
   font-size: 24px;
   color: #0a8a78;
@@ -455,7 +450,6 @@
   text-transform: uppercase;
 }
 
-/* Grid das funcionalidades */ 
 .funcionalidades-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -467,16 +461,14 @@
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
 }
 
-/* Item individual da funcionalidade */
 .funcionalidade-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   gap: 20px;
+  text-align: center;
 }
 
-/* Container do ícone */
 .funcionalidade-icone {
   width: 80px;
   height: 80px;
@@ -489,62 +481,51 @@
   transition: all 0.3s ease;
 }
 
-/* Efeito hover no ícone */
 .funcionalidade-icone:hover {
   background-color: #0a8a78;
   transform: translateY(-5px);
   box-shadow: 0 12px 30px rgba(10, 138, 120, 0.2);
 }
 
-/* Imagem do ícone */
 .funcionalidade-icone-img {
   width: 45px;
   height: 45px;
   transition: filter 0.3s ease;
 }
 
-/* Filtro do ícone no hover */
 .funcionalidade-icone:hover .funcionalidade-icone-img {
   filter: brightness(0) invert(1);
 }
 
-/* Título da funcionalidade */
 .funcionalidade-titulo {
   font-size: 18px;
-  color: #333333;
+  color: #333;
   font-weight: 600;
   line-height: 1.3;
 }
 
-/* ==================== RESPONSIVIDADE DA SEGUNDA SEÇÃO ==================== */
+/* ======= RESPONSIVO ======= */
 
-/* Ajustes para tablets */
 @media (max-width: 960px) {
-  
-  /* Seção sobre em coluna */
   .sobre-container {
     flex-direction: column;
     gap: 40px;
     text-align: center;
   }
-  
-  /* Imagem menor em tablets */
-  .imagem-amendoas {
-    width: 30px;
-    height: 300px;
-  }
-  
-  /* Remove padding esquerdo */
+
   .sobre-conteudo {
     padding-left: 0;
   }
-  
-  /* Título menor */
+
   .sobre-titulo {
     font-size: 36px;
   }
-  
-  /* Grid de funcionalidades em uma coluna */
+
+  /* Corrigido: a classe certa é .imagem-principal */
+  .imagem-principal {
+    width: clamp(240px, 50vw, 420px);
+  }
+
   .funcionalidades-grid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -552,43 +533,33 @@
   }
 }
 
-/* Ajustes para smartphones */
 @media (max-width: 600px) {
-  
-  /* Padding reduzido */
   .secao-sobre {
     padding: 60px 0;
   }
-  
-  /* Container com padding menor */
+
   .sobre-container,
   .funcionalidades-container {
     padding: 0 20px;
   }
-  
-  /* Imagem ainda menor */
-  .imagem-amendoas {
-    width: 250px;
-    height: 250px;
+
+  .imagem-principal {
+    width: clamp(200px, 70vw, 340px);
   }
-  
-  /* Título menor */
+
   .sobre-titulo {
     font-size: 28px;
   }
-  
-  /* Texto menor */
+
   .sobre-texto,
   .sobre-texto-destaque {
     font-size: 16px;
   }
-  
-  /* Grid com padding menor */
+
   .funcionalidades-grid {
     padding: 30px 20px;
   }
-  
-  /* Título das funcionalidades menor */
+
   .funcionalidades-titulo {
     font-size: 20px;
   }
