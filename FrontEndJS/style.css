@@ -563,3 +563,244 @@
     font-size: 20px;
   }
 }
+
+
+
+
+/* ==================== TERCEIRA SEÇÃO - REFERÊNCIA EM IA ==================== */
+
+/* Container principal da seção referência */
+.secao-referencia {
+  background-color: #ffffff;
+  padding: 100px 0;
+  width: 100%;
+  position: relative;
+}
+
+/* Container geral da seção */
+.referencia-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 80px;
+}
+
+/* Cabeçalho da seção referência */
+.referencia-cabecalho {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Título principal da referência */
+.referencia-titulo {
+  font-size: 48px;
+  color: #0a8a78;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 30px;
+}
+
+/* Descrição da referência */
+.referencia-descricao {
+  font-size: 18px;
+  color: #555555;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Card de apoio ao agronegócio */
+.card-apoio {
+  background-color: #0a8a78;
+  border-radius: 25px;
+  max-width: 900px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(10, 138, 120, 0.2);
+  position: relative;
+}
+
+/* Cabeçalho do card com título destacado */
+.card-apoio-cabecalho {
+  background-color: #087560;
+  padding: 25px 50px;
+  text-align: center;
+  position: relative;
+}
+
+/* Título do card */
+.card-apoio-titulo {
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Conteúdo do card */
+.card-apoio-conteudo {
+  padding: 50px;
+  color: #ffffff;
+  text-align: left;
+}
+
+/* Texto principal do card */
+.card-apoio-texto {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+/* Lista de benefícios */
+.lista-beneficios {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0;
+}
+
+/* Item individual da lista */
+.item-beneficio {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.8;
+  margin-bottom: 8px;
+  padding-left: 5px;
+}
+
+/* Conclusão do card */
+.card-apoio-conclusao {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-top: 30px;
+  color: #ffffff;
+  font-style: italic;
+}
+
+/* ==================== RESPONSIVIDADE DA TERCEIRA SEÇÃO ==================== */
+
+/* Ajustes para tablets grandes */
+@media (max-width: 1200px) {
+  .referencia-titulo {
+    font-size: 42px;
+  }
+  
+  .card-apoio-conteudo {
+    padding: 40px;
+  }
+}
+
+/* Ajustes para tablets */
+@media (max-width: 960px) {
+  .secao-referencia {
+    padding: 80px 0;
+  }
+  
+  .referencia-container {
+    gap: 60px;
+  }
+  
+  .referencia-titulo {
+    font-size: 36px;
+  }
+  
+  .referencia-descricao {
+    font-size: 16px;
+  }
+  
+  .card-apoio-cabecalho {
+    padding: 20px 30px;
+  }
+  
+  .card-apoio-titulo {
+    font-size: 20px;
+  }
+  
+  .card-apoio-conteudo {
+    padding: 35px 30px;
+  }
+  
+  .card-apoio-texto,
+  .item-beneficio,
+  .card-apoio-conclusao {
+    font-size: 16px;
+  }
+}
+
+/* Ajustes para smartphones */
+@media (max-width: 600px) {
+  .secao-referencia {
+    padding: 60px 0;
+  }
+  
+  .referencia-container {
+    padding: 0 20px;
+    gap: 50px;
+  }
+  
+  .referencia-titulo {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+  
+  .referencia-descricao {
+    font-size: 15px;
+  }
+  
+  .card-apoio {
+    border-radius: 20px;
+  }
+  
+  .card-apoio-cabecalho {
+    padding: 18px 25px;
+  }
+  
+  .card-apoio-titulo {
+    font-size: 18px;
+  }
+  
+  .card-apoio-conteudo {
+    padding: 30px 25px;
+  }
+  
+  .card-apoio-texto,
+  .card-apoio-conclusao {
+    font-size: 15px;
+  }
+  
+  .item-beneficio {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+
+/* Ajustes para smartphones pequenos */
+@media (max-width: 400px) {
+  .referencia-titulo {
+    font-size: 24px;
+  }
+  
+  .card-apoio-cabecalho {
+    padding: 15px 20px;
+  }
+  
+  .card-apoio-titulo {
+    font-size: 16px;
+  }
+  
+  .card-apoio-conteudo {
+    padding: 25px 20px;
+  }
+  
+  .card-apoio-texto,
+  .item-beneficio,
+  .card-apoio-conclusao {
+    font-size: 14px;
+  }
+}
