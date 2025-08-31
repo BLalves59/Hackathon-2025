@@ -241,7 +241,8 @@
         <button id="btn-login">Entrar</button>
 
         <div class="Registrar-conta">
-            <p>Não tem uma conta? <a onclick="alternateLoginRegister()" style="cursor: pointer;" id="btn-register">Registre-se</a></p>
+            <p>Não tem uma conta? <a style="cursor: pointer;"
+                    id="btn-register">Registre-se</a></p>
         </div>
     </div>
 
@@ -315,12 +316,114 @@
         // Contexto para a IA (versão resumida)
         const peanutGuideContext = `
         Você é o AmendoChat, um assistente especialista na cultura do amendoim no Brasil. Responda às perguntas dos usuários com base no conhecimento a seguir. Seja conciso e direto, usando formatação Markdown (negrito, listas) para melhorar a clareza.
+            
+        🌦️ Condições Climáticas em Tupã (SP) – Últimos Meses (Fictício)
 
+Período: Junho a Agosto de 2025
+
+    Junho/2025:
+
+        Precipitação: 25 mm (abaixo da média histórica).
+
+        Temperaturas: Médias entre 15°C e 25°C, com geadas leves em áreas rurais.
+
+        Impacto: Plantios de inverno (trigo, milho) afetados, mas sem danos significativos ao amendoim (fora de época).
+
+    Julho/2025:
+
+        Precipitação: 10 mm (seca severa).
+
+        Temperaturas: Mínimas de 12°C e máximas de 28°C, com dias consecutivos de umidade abaixo de 30%.
+
+        Impacto: Reservatórios hídricos em nível crítico; produtores dependem de irrigação.
+
+    Agosto/2025:
+
+        Precipitação: 40 mm (chuvas irregulares, concentradas na primeira quinzena).
+
+        Temperaturas: Amenas (14°C a 26°C), com nevoeiros matinais.
+
+        Impacto: Melhora parcial do solo, mas insuficiente para recompor lençóis freáticos.
+
+🌱 Implicações para a Safra de Amendoim 2025/2026
+
+    Plantio (setembro/outubro):
+
+        Solo seco exige irrigação suplementar, elevando custos.
+
+        Risco de atraso no plantio se chuvas não forem regulares em setembro.
+
+    Produtividade:
+
+        Estresse hídrico acumulado pode reduzir o potencial produtivo em 10-15% se persistir.
+
+    Qualidade:
+
+        Clima seco favorece grãos com menor risco de aflatoxinas, mas pode reduzir calibre.
             **Contexto sobre a Cultura do Amendoim:**
             Claro! Reformulei o texto para torná-lo mais coeso, organizado e adequado para ser usado como um prompt de IA. As informações foram estruturadas de forma lógica, agrupando tópicos relacionados e mantendo a linguagem técnica, porém mais fluida.
 
 ---
 
+
+Resumo dos Preços e Safras de Amendoim (Últimos Meses)
+
+    Preços Históricos (2023–2025):
+
+        Os preços do amendoim (saca de 25 kg) variaram significativamente:
+
+            2023: Entre R$ 94,79 (jan) e R$ 115,00 (mar/abr) 1.
+
+            2024: Pico de R$ 178,36 em julho, seguido de queda para R$ 110,00 em agosto 1.
+
+            2025: Queda progressiva: de R$ 103,48 (jan) para R$ 71,43 (ago) 1.
+
+        Tendência: Queda acentuada em 2025 devido ao aumento da oferta e safra recorde.
+
+    Produção e Safra:
+
+        Safra 2024/2025: Recorde de 1,18 milhão de toneladas (aumento de 60% em relação a 2023/2024) 69.
+
+        Expansão geográfica: Cultivo em São Paulo, Mato Grosso do Sul, Minas Gerais e Goiás, com crescimento de 20% na área plantada 29.
+
+        Clima: Secas em fevereiro/março de 2025 afetaram regiões como Bahia, mas não impediram a safra recorde nacional 4.
+
+    Exportações e Demanda:
+
+        Exportações de óleo: Salto de 136,2% no 1º semestre de 2025, com faturamento de US$ 120,9 milhões 3.
+
+        China: Principal comprador (84,3% do óleo e 22 mil toneladas de grão em 2025), impulsionado por tarifas sobre produtos dos EUA 35.
+
+        Grão: Queda de 5,4% no faturamento das exportações, apesar do aumento de 12,9% no volume 3.
+
+    Fatores de Influência:
+
+        Qualidade: Sistemas de classificação por qualidade (ex.: Coplana) premium de até 30% para grãos superiores 2.
+
+        Custos: Seca elevou custos de produção em algumas regiões, exigindo irrigação 4.
+
+        Concorrência: Queda nos preços da soja incentivou migração para o amendoim 9.
+
+    Previsões para 2025/2026:
+
+        Produção: Espera-se nova safra robusta, com potencial de superar 1 milhão de toneladas 9.
+
+        Preços: Pressão baixista devido ao aumento dos estoques globais 3, mas sustentada pela demanda chinesa e qualidade brasileira.
+
+        Riscos: Climáticos (secas) e concorrência de Índia/África na segunda metade de 2025 
+
+
+
+        Com base nos dados abaixo, gere previsões para os preços e safras de amendoim no Brasil para os próximos 6 meses (setembro de 2025 a fevereiro de 2026). Considere:
+
+    Tendências históricas de preços (2023–ago/2025).
+
+    Safra recorde de 1,18 mi t em 2024/2025 e expansão da área plantada.
+
+    Exportações crescentes de óleo (+136% em 2025) e demanda chinesa.
+
+    Fatores de risco: clima, estoques globais e concorrência.
+    Inclua projeções numéricas para preços (saca de 25 kg) e produção, além de cenários otimista, pessimista e neutro.
 **Título: Guia Completo para o Cultivo e Manejo do Amendoim: Fatores Agronômicos, Climáticos e de Pós-Colheita**
 
 **Introdução:**
@@ -414,6 +517,8 @@ Este texto consolidado agora pode ser usado como um prompt abrangente para uma I
 *   "Com base no guia acima, elabore um plano de manejo para a cultivar BR 1 no Nordeste brasileiro, considerando um sistema de sequeiro."
 *   "Liste as melhores estratégias integradas para o controle de aflatoxinas na cadeia produtiva do amendoim."
 *   "Compare as vantagens e desvantagens do cultivo de amendoim de porte ereto versus rasteiro."
+
+
         `
         // --- ESTADO DA APLICAÇÃO ---
         let conversationHistory = [];
@@ -632,7 +737,7 @@ Este texto consolidado agora pode ser usado como um prompt abrangente para uma I
 
         function initializeChat() {
             conversationHistory = [];
-            const welcomeMessage = "Olá! Eu sou o AmendoChat, seu especialista em cultivo de amendoim. Como posso ajudar hoje?";
+            const welcomeMessage = "Olá! Eu sou o AmendoChat, seu especialista em cultivo e gestão de amendoim. Conte-me sobre você e suas dúvidas para que eu possa ajudá-lo!";
             addMessage('assistant', welcomeMessage);
             conversationHistory.push({ role: 'assistant', content: welcomeMessage });
         }
