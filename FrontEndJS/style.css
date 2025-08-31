@@ -330,7 +330,6 @@
 
 
 
-
 /* ======= SEGUNDA SEÇÃO - SOBRE O AMENDOCHAT ======= */
 
 .secao-sobre {
@@ -363,13 +362,14 @@
   border-radius: 50%;
   overflow: hidden;
 
-  /* tira o fundo branco e a sombra que criavam o “disco” */
+  /* sem fundo e sem sombra “disco” */
   background: transparent;
   box-shadow: none;
 
-  /* opcional: aro colorido bonito */
-  outline: 6px solid #0a8a78;
-  outline-offset: 0;
+  /* REMOVE a borda gigante */
+  /* outline: 6px solid #0a8a78; */
+  /* outline-offset: 0; */
+
   position: relative;
 }
 
@@ -521,7 +521,6 @@
     font-size: 36px;
   }
 
-  /* Corrigido: a classe certa é .imagem-principal */
   .imagem-principal {
     width: clamp(240px, 50vw, 420px);
   }
