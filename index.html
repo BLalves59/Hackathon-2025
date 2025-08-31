@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmendoChat - Especialista em Amendoim</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('./fundo-login.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        #login-container {
+            width: 420px;
+            background-color: transparent;
+            border: 2px solid rgba(255, 255, 255, .2);
+            border-radius: 10px;
+            color: #fff;
+            padding: 30px 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+            backdrop-filter: blur(50px);
+        }
+
+        .TituloPrincipal {
+            font-size: 36px;
+            text-align: center;
+        }
+
+        .input-usuario {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            margin: 30px 0;
+        }
+
+        .input-usuario input {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            border: 2px solid rgba(255, 255, 255, .2);
+            border-radius: 40px;
+            outline: none;
+            font-size: 16px;
+            color: #fff;
+            padding: 20px 45px 20px 20px;
+        }
+
+        .input-usuario input::placeholder {
+            color: #cfcfcf;
+        }
+
+        .input-usuario i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+
+        .Redefinir-senha {
+            display: flex;
+            justify-content: space-between;
+            margin: -15px 0 15px;
+        }
+
+        .Redefinir-senha label input {
+            accent-color: #fff;
+            margin-right: 5px;
+        }
+
+        .Redefinir-senha a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .Redefinir-senha a:hover {
+            text-decoration: underline;
+        }
+
+        #btn-login {
+            width: 100%;
+            height: 50px;
+            background-color: #fff;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            margin-top: 20px;
+        }
+
+        #btn-login:hover {
+            background-color: transparent;
+            border: 2px solid rgba(255, 255, 255, .2);
+            color: #fff;
+            transition: 0.5s;
+        }
+
+        .Registrar-conta {
+            font-size: 14px;
+            text-align: center;
+            margin: 20px 0 15px;
+        }
+
+        .Registrar-conta a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .Registrar-conta a:hover {
+            text-decoration: underline;
+        }
+
+        .alertinha {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            padding-top: 150px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .alerta-conteudo {
+            background-color: transparent;
+            margin: auto;
+            padding: 20px;
+            border: 2px solid rgba(255, 255, 255, .2);
+            width: 60%;
+            max-width: 500px;
+            font-family: "Poppins", sans-serif;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            backdrop-filter: blur(50px);
+        }
+
+        .fechar {
+            color: purple;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .fechar:hover {
+            color: rgba(255, 255, 255, .2);
+        }
+
+        #chat-container {
+            display: none;
+            width: 100%;
+            max-width: 800px;
+            height: 90vh;
+        }
+
+        .typing-indicator {
+            display: flex;
+            padding: 10px;
+        }
+
+        .typing-indicator span {
+            height: 10px;
+            width: 10px;
+            float: left;
+            margin: 0 1px;
+            background-color: #9E9EA1;
+            display: block;
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        .typing-indicator span:nth-of-type(1) {
+            animation: 1s blink infinite 0.3333s;
+        }
+
+        .typing-indicator span:nth-of-type(2) {
+            animation: 1s blink infinite 0.6666s;
+        }
+
+        .typing-indicator span:nth-of-type(3) {
+            animation: 1s blink infinite 0.9999s;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Container de Login -->
+    <div id="login-container">
+        <h1 class="TituloPrincipal">Login</h1>
+        <div class="input-usuario">
+            <input type="text" id="username" placeholder="Usuário" required>
+            <i class="fas fa-user"></i>
+        </div>
+        <div class="input-usuario">
+            <input type="password" id="password" placeholder="Senha" required>
+            <i class="fas fa-lock"></i>
+        </div>
+
+        <div class="Redefinir-senha">
+            <label>
+                <input type="checkbox"> Lembre-me
+            </label>
+            <a href="#">Esqueceu a senha?</a>
+        </div>
+
+        <button id="btn-login">Entrar</button>
+
+        <div class="Registrar-conta">
+            <p>Não tem uma conta? <a onclick="alternateLoginRegister()" style="cursor: pointer;" id="btn-register">Registre-se</a></p>
+        </div>
+    </div>
+
+    <!-- Container do Chat -->
+    <div id="chat-container" class="bg-white rounded-2xl shadow-2xl flex flex-col p-4 md:p-6">
+        <!-- Cabeçalho -->
+        <header class="flex items-center pb-4 border-b border-gray-200">
+            <img src="./Green Flat Illustrative Agricultural Machinery Logo[Recuperado].svg" alt="logo" width="50px">
+            <div class="pl-2">
+                <h1 class="text-xl md:text-2xl font-bold text-gray-800">AmendoChat</h1>
+                <p class="text-sm text-gray-500">Seu especialista na cultura do amendoim</p>
+            </div>
+            <button id="btn-logout" class="ml-auto text-red-600 hover:text-red-800">
+                <i class="fas fa-sign-out-alt"></i> Sair
+            </button>
+        </header>
+
+        <!-- Mensagens do Chat -->
+        <div id="chat-messages" class="flex-1 overflow-y-auto py-4 space-y-4">
+            <!-- As mensagens serão inseridas aqui -->
+        </div>
+
+        <!-- Indicador de "Digitando..." -->
+        <div id="typing-indicator-container" class="h-10"></div>
+
+        <!-- Área de Input -->
+        <footer class="border-t border-gray-200 pt-4">
+            <div class="relative">
+                <textarea id="user-input" placeholder="Pergunte sobre o cultivo de amendoim..." rows="1"
+                    class="w-full p-3 pr-28 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 resize-none transition-all duration-200"></textarea>
+                <button id="send-button"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 bg-green-600 text-white font-semibold rounded-lg px-5 py-2 hover:bg-green-700 transition-colors disabled:bg-gray-300">
+                    Enviar
+                </button>
+                <button id="stop-button" style="display:none;"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 bg-red-600 text-white font-semibold rounded-lg px-5 py-2 hover:bg-red-700 transition-colors">
+                    Parar
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Popup de alerta -->
+    <div id="popup-alert" class="alertinha">
+        <div class="alerta-conteudo">
+            <span class="fechar">&times;</span>
+            <p id="alert-message">Mensagem de alerta aqui</p>
+        </div>
+    </div>
+
+    <script type="module">
+        // --- CONFIGURAÇÕES E ELEMENTOS DA UI ---
+        const GEMINI_API_KEY = "AIzaSyAf-zoMulHx-C4eAmCfc2mfK19jiZjlFJc";
+        const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+
+        const loginContainer = document.getElementById('login-container');
+        const chatContainer = document.getElementById('chat-container');
+        const chatMessages = document.getElementById('chat-messages');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+        const stopButton = document.getElementById('stop-button');
+        const typingIndicatorContainer = document.getElementById('typing-indicator-container');
+        const loginButton = document.getElementById('btn-login');
+        const logoutButton = document.getElementById('btn-logout');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const popupAlert = document.getElementById('popup-alert');
+        const alertMessage = document.getElementById('alert-message');
+        const closeAlert = document.querySelector('.fechar');
+
+        // Contexto para a IA (versão resumida)
+        const peanutGuideContext = `
+        Você é o AmendoChat, um assistente especialista na cultura do amendoim no Brasil. Responda às perguntas dos usuários com base no conhecimento a seguir. Seja conciso e direto, usando formatação Markdown (negrito, listas) para melhorar a clareza.
+
+            **Contexto sobre a Cultura do Amendoim:**
+            Claro! Reformulei o texto para torná-lo mais coeso, organizado e adequado para ser usado como um prompt de IA. As informações foram estruturadas de forma lógica, agrupando tópicos relacionados e mantendo a linguagem técnica, porém mais fluida.
+
+---
+
+**Título: Guia Completo para o Cultivo e Manejo do Amendoim: Fatores Agronômicos, Climáticos e de Pós-Colheita**
+
+**Introdução:**
+O amendoim (*Arachis hypogaea*) é uma cultura de grande importância econômica e nutricional, cultivada em diversas regiões do mundo. Seu desenvolvimento e produtividade são influenciados por uma série de fatores inter-relacionados, que vão desde as condições climáticas e edáficas até as práticas de manejo, colheita e processamento. Este guia sintetiza os conhecimentos essenciais para o cultivo eficiente do amendoim, abordando desde a escolha da área e do solo até o controle de doenças, a colheita, o armazenamento e as propriedades nutricionais do grão.
+
+**1. Fatores Climáticos e Adaptação**
+*   **Temperatura:** É o fator climático mais crítico. A germinação é máxima entre 32°C e 34°C e bastante reduzida abaixo de 18°C. A temperatura ideal para a fotossíntese (metabolismo C3) é de 30°C. Temperaturas abaixo do ótimo prolongam a fase vegetativa e atrasam a floração.
+*   **Água:** A demanda hídrica é variável, sendo maior na fase de enchimento das vagens. O consumo total varia de 490 mm (cultivares de ciclo curto) a 665 mm (cultivares de ciclo longo). Déficit hídrico nessa fase impacta severamente a produtividade.
+*   **Latitude e Altitude:** A cultura é predominantemente adaptada a latitudes de até 30° N e S, podendo ser cultivada em algumas regiões até 35° N. Quanto à altitude, o cultivo é viável até 1.000 m acima do nível do mar, sendo restrito em altitudes superiores devido às baixas temperaturas.
+
+**2. Solo e Preparo do Terreno**
+*   **Tipo Ideal:** Solos arenosos ou franco-arenosos, bem drenados, com pH entre 6,0 e 6,5, são ideais. Solos argilosos dificultam a colheita e aumentam as perdas de vagens.
+*   **Importância da Drenagem e Aeração:** A cultura é sensível ao encharcamento e à deficiência de oxigênio no solo. É necessária uma boa drenagem para fornecer O₂ às raízes e vagens e N₂ para a fixação simbiótica. Pelo menos 10-12% de O₂ no solo é ideal.
+*   **Preparo:** Recomenda-se aração seguida de gradagem. O plantio direto ou cultivo mínimo é uma opção viável e conservacionista. Em solos compactados, a subsolagem é benéfica.
+
+**3. Sistema Radicular e Desenvolvimento**
+*   **Características:** Constituído por uma raiz principal pivotante vigorosa e um sistema lateral abundante e ramificado. Nos primeiros estágios, o crescimento da raiz é predominante.
+*   **Profundidade:** Pode ultrapassar 100 cm de profundidade, embora cerca de 60% das raízes se concentrem nos primeiros 30 cm de solo. A distribuição depende do tipo de solo e da umidade.
+
+**4. Nutrição e Adubação**
+*   **Macronutrientes Críticos:** Fósforo (P) e Cálcio (Ca) são os mais importantes para a produção e qualidade.
+    *   **Fósforo (P):** Considerado o principal fator de produtividade, aumenta a eficiência reprodutiva e o enchimento dos frutos.
+    *   **Cálcio (Ca):** Influencia o pH do solo (controlando o alumínio) e a fisiologia da planta (aprofundamento radicular, resistência do ginóforo, tamanho das sementes, enchimento das vagens e redução de podridões). A adubação fosfatada pode elevar a produtividade em 20-54%.
+*   **Nitrogênio (N) e Fixação Biológica:** A inoculação com *Bradyrhizobium* geralmente dispensa a adubação nitrogenada, desde que o pH esteja entre 5,9 e 6,3. Fora dessa faixa, recomenda-se 10-16 kg/ha de N. O Molibdênio (Mo) é crucial para aumentar a eficiência da fixação biológica.
+
+**5. Plantio e Espaçamento**
+*   **Época:** Depende da cultivar e do regime de chuvas. Deve-se planejar a semeadura para que a colheita ocorra em época seca.
+*   **Espaçamento:**
+    *   **Porte Ereto (ciclo curto: 90-100 dias):** 0,5m x 0,2m (2 sementes/cova) ou 0,3m x 0,2m (mais adensado, maior produtividade, requer mais sementes). Densidade populacional entre 160.000 e 200.000 plantas/ha.
+    *   **Porte Rasteiro (ciclo longo):** 80-90 cm entre linhas, com densidade de 12-15 sementes por metro linear.
+*   **Profundidade de Plantio:** Em média, 5 cm. Plantio superficial arrisca a secagem rápida das sementes, enquanto plantio muito profundo dificulta a emergência.
+*   **População:** Não se recomenda desbaste. A semeadura deve ser feita com 2 sementes por cova.
+
+**6. Manejo Integrado de Plantas Daninhas (MIPD)**
+*   **Período Crítico:** Da emergência até os 40 dias (porte ereto) ou até 70 dias (porte rasteiro).
+*   **Estratégias:**
+    *   **Controle Cultural:** Uso de espaçamentos reduzidos (ex: 0,3m x 0,2m) e populações altas (>250.000 plantas/ha) para promover sombreamento rápido.
+    *   **Controle Mecânico:** Capina manual ou com cultivador, com cuidado para não danificar ginóforos e vagens no solo.
+    *   **Controle Químico:** Uso de herbicidas de pré e pós-emergência, isolados ou em mistura (ex: graminicida + latifolicida). Aplicação deve considerar a cultivar, o mecanismo de ação do herbicida, as condições ambientais e a calibração correta do pulverizador. Exemplos: Bentazon, Metolachlor, Oxadiazon.
+
+**7. Irrigação e Drenagem**
+*   **Importância:** A irrigação é viável e recomendável, especialmente em regiões de clima irregular como o Semiárido, garantindo produtividade e segurança da safra.
+*   **Sistemas:** Aspersão, microaspersão e irrigação por sulcos (este último exige sistematização da área para evitar encharcamento). A irrigação por inundação não é recomendada.
+*   **Manejo:** O cálculo da lâmina de irrigação baseia-se na evapotranspiração de referência (ETo) e no coeficiente da cultura (Kc). O monitoramento da umidade do solo é fundamental. A fertirrigação é eficiente em sistemas localizados.
+*   **Drenagem:** É crucial para evitar saturação hídrica e salinização do solo, problemas comuns em áreas irrigadas do Semiárido. A drenagem deficiente causa amarelecimento das folhas e perdas irreversíveis se o encharcamento perdurar por mais de 2-3 dias.
+
+**8. Principais Doenças e Seu Controle**
+*   **Doenças Foliares (Fungos):**
+    *   **Mancha-Castanha (*Cercospora arachidicola*) e Pinta-Preta (*Cercosporidium personatum*):** Causam desfolha e perdas de até 50-70%. Controle com fungicidas (ex: Clorotalonil, Difenoconazol, Mancozebe) e uso de cultivares resistentes/tolerantes (ex: IAC-Caiapó, NC 6, NC 7, BR 1).
+    *   **Verrugose (*Sphaceloma arachidis*):** Controlada pelos mesmos fungicidas das manchas. Sua incidência pode estar associada a danos de tripes.
+*   **Viroses:** O "mosqueado" (*Peanut mottle virus - PeMoV*) é o de maior impacto econômico, transmitido por pulgões e sementes. O controle baseia-se no uso de sementes sadias e no manejo de vetores.
+*   **Podridões de Vagens e Tombamento (*Pythium, Rhizoctonia, Fusarium*):** Controlados com tratamento de sementes (ex: mistura de Carboxin + Thiram) e evitando solos encharcados.
+*   **Aflatoxinas (*Aspergillus flavus* e *A. parasiticus*):** A contaminação é favorecida por estresse hídrico pré-colheita, danos de insetos e condições inadequadas de secagem e armazenamento. O manejo preventivo é a única estratégia eficaz.
+
+**9. Principais Pragas e Seu Controle**
+*   **Pragas de Solo:** Larva-alfinete (*Diabrotica speciosa*), lagarta-elasmo (*Elasmopalpus lignosellus*), lagarta-rosca (*Agrotis ipsilon*), percevejo-preto (*Cyrtonemus mirabilis*) e percevejo-castanho (*Scaptocoris castanea*). A lagarta-elasmo é um vetor eficiente de fungos aflatoxigênicos.
+*   **Pragas de Parte Aérea:** Cigarrinha-verde (*Empoasca kraemeri*), tripes (*Enneothrips flavens*), ácaros (*Tetranychus urticae*, *T. evansi*), lagarta-militar (*Spodoptera frugiperda*) e lagarta-do-pescoço-vermelho (*Stegasta bosquela*).
+*   **Manejo:** Inclui monitoramento, uso de cultivares resistentes, controle cultural (rotação, destruição de restos culturais), controle biológico (ex: *Beauveria bassiana*, *Metarhizium anisopliae*, *Bacillus thuringiensis*) e controle químico racional quando necessário.
+
+**10. Colheita, Secagem e Armazenamento**
+*   **Ponto de Colheita:** Quando 70% das vagens atingem a maturação fisiológica (85-90 dias para precoces; 100-115 dias para eretas tradicionais; 120-150 dias para rasteiras).
+*   **Cura:** Secagem natural no campo por 3-5 dias após o arranquio, expondo as vagens ao sol. Reduz a umidade e preserva propriedades sensoriais.
+*   **Secagem Artificial:** Necessária para atingir umidade segura para armazenamento (<8-10%). Feita em secadores (ex: carretas secadoras) a ~35°C e umidade relativa de ~45%.
+*   **Armazenamento:** De preferência em vagens, em local seco, fresco e bem ventilado. A umidade relativa ideal é <60%. O monitoramento da temperatura, umidade e presença de insetos é essencial. Grãos armazenados com alta umidade elevam a temperatura, tornam-se suscetíveis a fungos (ex: *Aspergillus*, *Penicillium*) e insetos.
+
+**11. Beneficiamento e Qualidade**
+*   **Processo:** Envolve descascamento, pré-limpeza (máquina de ar e peneiras), separação de impurezas e grãos chochos (mesa de gravidade) e, para sementes, tratamento químico.
+*   **Qualidade da Semente:** Avaliada por testes de pureza, umidade, germinação e vigor. Sementes velhas, mal conservadas ou com película opaca têm baixo poder germinativo.
+
+**12. Propriedades Nutricionais e Processamento**
+*   **Valor Nutricional:** Rico em energia (~596 cal/100g), lipídios (36-49%), proteínas (26-31%), vitaminas (E, complexo B) e minerais (Mg, P, K, Zn, Fe). A relação oleico/linoleico (O/L) influencia a estabilidade oxidativa.
+*   **Compostos Bioativos:** Contém resveratrol, arachidin-1 e piceatanol, com comprovadas atividades antioxidante, anti-inflamatória e cardioprotetora.
+*   **Derivados:** Consumido in natura (torrado, cozido), em produtos de confeitaria (paçoca, pé-de-moleque, bombons) e como pasta/manteiga. O óleo é usado na alimentação e na indústria.
+*   **Alergenicidade:** Causada por proteínas como Ara h1, Ara h2. O cozimento pode reduzir o potencial alergênico.
+
+**13. Mercado e Comercialização**
+*   **Cadeia Produtiva:** Envolve produtores, cooperativas, indústrias de processamento e exportadores.
+*   **Qualidade e Rastreabilidade:** Programas como o Pró-Amendoim (Abicab) e a Produção Integrada (PI Amendoim) buscam garantir a qualidade, a segurança (controle de aflatoxinas) e a rastreabilidade do produto.
+*   **Mercados:** Interno (grãos e confeitaria) e externo (União Europeia é o principal importador de amendoim em grão). Cultivares do tipo *runner* (rasteiras) são preferidas para exportação.
+
+**14. Melhoramento Genético e Biotecnologia**
+*   **Objetivos:** Desenvolvimento de cultivares precoces, produtivas, resistentes a doenças (cercosporioses, viroses), tolerantes à seca e com alta qualidade de grão (alto oleico, baixa alergenicidade).
+*   **Ferramentas:** Incluem métodos convencionais (hibridação, seleção) e biotecnológicos (marcadores moleculares para seleção assistida, cultivo de tecidos, transgenia). Espécies silvestres do gênero *Arachis* são fontes importantes de genes de resistência.
+
+**Conclusão:**
+O sucesso da cultura do amendoim depende da integração harmoniosa de todos esses fatores. O manejo deve ser preventivo e baseado em conhecimentos técnicos, desde a escolha da cultivar adaptada à região até as práticas pós-colheita que garantam a qualidade e a segurança do alimento. A adoção de tecnologias, como irrigação, MIPD e inoculação, aliada à organização dos produtores em cooperativas, é fundamental para aumentar a rentabilidade e a sustentabilidade da amendoicultura.
+
+---
+
+Este texto consolidado agora pode ser usado como um prompt abrangente para uma IA, solicitando, por exemplo:
+*   "Com base no guia acima, elabore um plano de manejo para a cultivar BR 1 no Nordeste brasileiro, considerando um sistema de sequeiro."
+*   "Liste as melhores estratégias integradas para o controle de aflatoxinas na cadeia produtiva do amendoim."
+*   "Compare as vantagens e desvantagens do cultivo de amendoim de porte ereto versus rasteiro."
+        `
+        // --- ESTADO DA APLICAÇÃO ---
+        let conversationHistory = [];
+        let isGenerating = false;
+        let currentController = null;
+        let isLoggedIn = false;
+
+        // --- FUNÇÕES DE AUTENTICAÇÃO ---
+        function showAlert(message) {
+            alertMessage.textContent = message;
+            popupAlert.style.display = 'block';
+        }
+
+        closeAlert.addEventListener('click', function () {
+            popupAlert.style.display = 'none';
+        });
+
+        window.addEventListener('click', function (event) {
+            if (event.target == popupAlert) {
+                popupAlert.style.display = 'none';
+            }
+        });
+
+        loginButton.addEventListener('click', function () {
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (!username || !password) {
+                showAlert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            if (username === 'admin' && password === 'admin') {
+                isLoggedIn = true;
+                loginContainer.style.display = 'none';
+                chatContainer.style.display = 'flex';
+                if (conversationHistory.length === 0) initializeChat();
+            } else {
+                showAlert('Credenciais inválidas. Tente novamente.');
+            }
+        });
+
+        logoutButton.addEventListener('click', function () {
+            isLoggedIn = false;
+            chatContainer.style.display = 'none';
+            loginContainer.style.display = 'block';
+            usernameInput.value = '';
+            passwordInput.value = '';
+        });
+
+        passwordInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                loginButton.click();
+            }
+        });
+
+        // --- FUNÇÕES PRINCIPAIS DO CHAT ---
+        function addMessage(role, content) {
+            const messageWrapper = document.createElement('div');
+            messageWrapper.classList.add('flex', 'flex-col', 'items-start');
+
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('p-3', 'rounded-xl', 'max-w-lg', 'break-words', 'shadow-sm');
+
+            const senderName = document.createElement('strong');
+            senderName.classList.add('block', 'text-sm', 'mb-1');
+
+            if (role === 'user') {
+                messageWrapper.classList.add('items-end');
+                messageDiv.classList.add('bg-green-100', 'text-green-900');
+                senderName.textContent = 'Você';
+                senderName.classList.add('text-green-800');
+                messageDiv.innerHTML = content.replace(/\n/g, '<br>');
+            } else if (role === 'assistant') {
+                messageDiv.classList.add('bg-gray-100', 'text-gray-800');
+                senderName.textContent = 'AmendoChat';
+                senderName.classList.add('text-gray-600');
+                messageDiv.innerHTML = marked.parse(content);
+            } else {
+                messageWrapper.classList.add('items-center', 'w-full');
+                messageDiv.classList.add('bg-red-100', 'text-red-800', 'text-center', 'text-sm', 'w-full', 'max-w-full');
+                messageDiv.innerHTML = content;
+                chatMessages.appendChild(messageDiv);
+                scrollToBottom();
+                return;
+            }
+
+            messageDiv.prepend(senderName);
+            messageWrapper.appendChild(messageDiv);
+            chatMessages.appendChild(messageWrapper);
+            scrollToBottom();
+        }
+
+        async function sendMessage() {
+            if (!isLoggedIn) {
+                showAlert('Por favor, faça login para usar o chat.');
+                return;
+            }
+
+            const message = userInput.value.trim();
+            if (!message || isGenerating) return;
+
+            addMessage('user', message);
+            conversationHistory.push({ role: 'user', content: message });
+            userInput.value = '';
+            adjustTextareaHeight();
+
+            setGeneratingState(true);
+
+            try {
+                // Construir o conteúdo para a API Gemini
+                const contents = [{
+                    role: "user",
+                    parts: [{ text: peanutGuideContext }]
+                }];
+
+                // Adicionar histórico da conversa
+                conversationHistory.forEach(msg => {
+                    contents.push({
+                        role: msg.role === 'user' ? 'user' : 'model',
+                        parts: [{ text: msg.content }]
+                    });
+                });
+
+                const response = await fetch(GEMINI_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        contents: contents,
+                        generationConfig: {
+                            temperature: 0.3,
+                            topK: 40,
+                            topP: 0.95,
+                            maxOutputTokens: 1024,
+                        },
+                        safetySettings: [
+                            {
+                                category: "HARM_CATEGORY_HARASSMENT",
+                                threshold: "BLOCK_MEDIUM_AND_ABOVE"
+                            },
+                            {
+                                category: "HARM_CATEGORY_HATE_SPEECH",
+                                threshold: "BLOCK_MEDIUM_AND_ABOVE"
+                            }
+                        ]
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('Erro da API:', errorText);
+
+                    try {
+                        const errorData = JSON.parse(errorText);
+                        throw new Error(errorData.error?.message || `Erro na API: ${response.statusText}`);
+                    } catch {
+                        throw new Error(`Erro na API: ${response.status} ${response.statusText}`);
+                    }
+                }
+
+                const data = await response.json();
+
+                if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
+                    throw new Error('Resposta inválida da API Gemini');
+                }
+
+                const assistantMessage = data.candidates[0].content.parts[0].text;
+
+                addMessage('assistant', assistantMessage);
+                conversationHistory.push({ role: 'assistant', content: assistantMessage });
+
+            } catch (error) {
+                console.error('Erro detalhado:', error);
+                addMessage('system', `Erro: ${error.message}`);
+            } finally {
+                setGeneratingState(false);
+            }
+        }
+
+        function stopGeneration() {
+            if (isGenerating && currentController) {
+                currentController.abort();
+                setGeneratingState(false);
+            }
+        }
+
+        // --- FUNÇÕES AUXILIARES ---
+        function setGeneratingState(isGen) {
+            isGenerating = isGen;
+            sendButton.disabled = isGen;
+            userInput.disabled = isGen;
+            sendButton.style.display = isGen ? 'none' : 'block';
+            stopButton.style.display = isGen ? 'block' : 'none';
+
+            if (isGen) {
+                typingIndicatorContainer.innerHTML = `
+            <div class="typing-indicator">
+                <span></span><span></span><span></span>
+            </div>
+        `;
+            } else {
+                typingIndicatorContainer.innerHTML = '';
+            }
+        }
+
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function adjustTextareaHeight() {
+            userInput.style.height = 'auto';
+            userInput.style.height = (userInput.scrollHeight) + 'px';
+        }
+
+        function initializeChat() {
+            conversationHistory = [];
+            const welcomeMessage = "Olá! Eu sou o AmendoChat, seu especialista em cultivo de amendoim. Como posso ajudar hoje?";
+            addMessage('assistant', welcomeMessage);
+            conversationHistory.push({ role: 'assistant', content: welcomeMessage });
+        }
+
+        // --- EVENT LISTENERS ---
+        sendButton.addEventListener('click', sendMessage);
+        stopButton.addEventListener('click', stopGeneration);
+
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        userInput.addEventListener('input', adjustTextareaHeight);
+
+        // Ajustar altura inicial da textarea
+        adjustTextareaHeight();
+
+    </script>
+</body>
+
+</html>
